@@ -9,7 +9,7 @@ import MacroBar from './macrobar.js';
 import MacroStore from '../stores/usermacrostore.js';
 
 import Immutable from 'immutable';
-//TODO: Pull the immutable history component over to the macro tracker
+//TODO DONE: Pull the immutable history component over to the macro tracker
 
 //bootstrap styling
 require('!style!css!less!bootstrap/less/bootstrap.less');

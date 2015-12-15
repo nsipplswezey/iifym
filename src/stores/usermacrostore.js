@@ -134,7 +134,53 @@ function incrementMacro(macro,currentSum){
     console.log('error in increment macro');
   }
 
-  console.log('incrementMacro to update store',todaysMacros);
+}
+
+function undoIncrement(macro){
+  //TODO: create a unique ID checking system
+  var id = 1;
+
+  //TODO: create a 'day' interval that resets at 4am
+  var currentDay = 0;
+
+  var user = _userMacros[id];
+  var todaysMacros = user[currentDay];
+
+  console.log('undoincrement')
+
+  if(macro==='protein'){
+    //if history exists, and it has an undo, undo it
+    if(todaysMacros.todaysProtein && todaysMacros.todaysProtein.hasUndo){
+      todaysMacros.todaysProtein.undo();
+    } else {
+      //if no history exists, do nothing
+    }
+
+  }else if(macro==='fat'){
+    //if history exists, and it has an undo, undo it
+    if(todaysMacros.todaysFat && todaysMacros.todaysProtein.hasUndo){
+      todaysMacros.todaysProtein.undo();
+    } else {
+      //if no history exists, do nothing
+    }
+
+  }else if(macro==='carbs'){
+    console.log('undoincrement carbs',todaysMacros.todaysCarb)
+    //if history exists, and it has an undo, undo it
+    if(todaysMacros.todaysCarb && todaysMacros.todaysCarb.hasUndo){
+      console.log('undoincrement carbs history')
+      todaysMacros.todaysCarb.undo();
+    } else {
+      console.log('undoincrement carbs no history')
+      //if no history exists, do nothing
+    }
+
+  }else{
+    console.log('error in undo macro');
+  }
+
+}
+function redoIncrement(macro){
 
 
 }
@@ -195,6 +241,16 @@ var MacroStore = Object.assign({}, EventEmitter.prototype,{
 
       case MacroConstants.MACRO_INCREMENT:
       incrementMacro(targetMacro,integerIncrement);
+      MacroStore.emitChange();
+      break;
+
+      case MacroConstants.UNDO_INCREMENT:
+      undoIncrement(targetMacro);
+      MacroStore.emitChange();
+      break;
+
+      case MacroConstants.REDO_INCREMENT:
+      redoIncrement(targetMacro);
       MacroStore.emitChange();
       break;
     }

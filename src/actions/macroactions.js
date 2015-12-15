@@ -23,6 +23,20 @@ var MacroActions = {
       macro: macro
     });
 
+  },
+  undoIncrement: function(macro){
+    console.log('undo action');
+    AppDispatcher.handleViewAction({
+      actionType: MacroConstants.UNDO_INCREMENT,
+      macro: macro
+    });
+
+  },
+  redoIncrement: function(macro){
+    AppDispatcher.handleViewAction({
+      actionType: MacroConstants.REDO_INCREMENT,
+      macro: macro
+    });
   }
 
 };

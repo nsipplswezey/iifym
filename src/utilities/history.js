@@ -54,10 +54,13 @@ History.prototype.getIndex = function(){
 
 };
 History.prototype.undo = function(){
+  console.log('undo',this.historyIndex,this.historyData.get(this.historyIndex));  
   if (this.historyIndex > 0) this.historyIndex--;
+
 
 };
 History.prototype.redo = function(){
+  console.log('redo',this.historyIndex,historyData.size);
   if (this.historyIndex < this.historyData.size) {
     this.historyIndex++;
     //draw or update
@@ -70,6 +73,7 @@ History.prototype.getCurrent = function(){
 };
 
 History.prototype.getData = function(){
+  console.log('getdata',this.historyData,'current index',this.historyIndex);
   return this.historyData;
 };
 

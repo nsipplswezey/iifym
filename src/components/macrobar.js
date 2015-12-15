@@ -20,11 +20,24 @@ var MacroCount = React.createClass({
     }
 
     return(
-    <Swipeable className="swipeable" onSwipedRight={function(){alert('yo');}}>
+    <Swipeable className="swipeable" onSwipedRight={this._onRedoSwipe} onSwipedLeft={this._onUndoSwipe}>
       <input className="form-control" value={readOut} data-test={this.props.category + '-identifier'} type="text" placeholder="Current count..." readOnly readonly>
       </input>
     </Swipeable>
     );
+
+  },
+  _onUndoSwipe: function(){
+    var macro = this.props.category;
+    console.log('undo swipe',this.props.category);
+    MacroActions.undoIncrement(macro);
+
+  },
+
+  _onRedoSwipe: function(){
+    var macro = this.props.category;
+    console.log('redo swipe',this.props.category);
+    MacroActions.redoIncrement(macro);
 
   }
 
@@ -121,7 +134,8 @@ var MacroBar = React.createClass({
             currentcount={currentBarData}
             currenthistory={currentBarHistory}
             historysum={currentBarHistorySum}
-            category={this.props.category}/>
+            category={this.props.category}
+          />
         </div>
 
     );
