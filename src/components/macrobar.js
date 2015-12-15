@@ -20,7 +20,7 @@ var MacroCount = React.createClass({
     }
 
     return(
-    <Swipeable className="swipeable" onSwipedRight={alert('yo')}>
+    <Swipeable className="swipeable" onSwipedRight={function(){alert('yo');}}>
       <input className="form-control" value={readOut} data-test={this.props.category + '-identifier'} type="text" placeholder="Current count..." readOnly readonly>
       </input>
     </Swipeable>
