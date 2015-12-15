@@ -25,7 +25,6 @@ var MacroActions = {
 
   },
   undoIncrement: function(macro){
-    console.log('undo action');
     AppDispatcher.handleViewAction({
       actionType: MacroConstants.UNDO_INCREMENT,
       macro: macro
