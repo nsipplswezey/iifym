@@ -2,9 +2,6 @@
   "name": "universal-demo-3",
   "version": "1.0.0",
   "description": "Webpack hot reloading React components",
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/jest/preprocessor.js"
-  },
   "main": "webpack.config.dev.js",
   "scripts": {
     "clean": "rimraf dist",
@@ -12,11 +9,11 @@
     "build": "npm run clean && npm run build:webpack",
     "start": "node devServer.js",
     "lint": "eslint src",
-    "test": "jest"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nsipplswezey/UniversalDemo3.git"
+    "url": "https://github.com/nsipplswezey/react_components.git"
   },
   "keywords": [
     "react",
@@ -43,13 +40,13 @@
     "babel-polyfill": "^6.2.0",
     "bootstrap": "^3.3.5",
     "css-loader": "^0.22.0",
+    "d3": "^3.5.10",
     "eslint": "^1.3.1",
     "eslint-plugin-react": "^2.3.0",
     "expect": "^1.13.0",
     "express": "^4.13.3",
     "file-loader": "^0.8.5",
     "immutable": "^3.7.5",
-    "jestpack": "^0.2.0",
     "jquery": "^2.1.4",
     "json-loader": "^0.5.3",
     "karma": "^0.13.15",
@@ -63,15 +60,15 @@
     "less-loader": "^2.2.2",
     "lodash": "^3.10.1",
     "mocha": "^2.3.4",
-    "pg": "^4.4.3",
+    "paths-js": "^0.3.5",
+    "react-addons-pure-render-mixin": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
+    "react-dom": "^0.14.3",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
     "redbox-react": "^1.0.1",
     "rimraf": "^2.4.3",
-    "sequelize": "^3.14.2",
     "style-loader": "^0.13.0",
-    "transit-js": "^0.8.837",
     "url-loader": "^0.5.7",
     "webpack": "^1.9.6",
     "webpack-dev-middleware": "^1.2.0",

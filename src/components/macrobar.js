@@ -4,7 +4,8 @@ import React, {
 
 import MacroActions from '../actions/macroactions'
 
-
+//import component
+var Swipeable = require('react-swipeable')
 
 var MacroCount = React.createClass({
 
@@ -18,14 +19,11 @@ var MacroCount = React.createClass({
       readOut = this.props.currentcount;
     }
 
-
-
-    console.log(this.props);
-
-
     return(
+    <Swipeable className="swipeable" onSwipedRight={console.log('yo')}>
       <input className="form-control" value={readOut} data-test={this.props.category + '-identifier'} type="text" placeholder="Current count..." readOnly readonly>
       </input>
+    </Swipeable>
     );
 
   }
