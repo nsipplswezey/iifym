@@ -54,7 +54,7 @@ History.prototype.getIndex = function(){
 
 };
 History.prototype.undo = function(){
-  console.log('undo',this.historyIndex,this.historyData.get(this.historyIndex));
+  //console.log('undo',this.historyIndex,this.historyData.get(this.historyIndex));
   if (this.historyIndex > 0) this.historyIndex--;
 
 
@@ -73,7 +73,7 @@ History.prototype.getCurrent = function(){
 };
 
 History.prototype.getData = function(){
-  console.log('getdata',this.historyData,'current index',this.historyIndex);
+  //console.log('getdata',this.historyData,'current index',this.historyIndex);
   return this.historyData;
 };
 
@@ -83,15 +83,21 @@ History.prototype.getHistoryToPresentAsString = function(){
   var currentIndex = this.historyIndex;
 
   var currentCount = currentData
-    .filter(function(item,index){return index < currentIndex;})
+    .filter(function(item,index){return index <= currentIndex;})
     .map(function(x){return x.get('count');});
 
-  return currentCount.interpose('+').reduce(function(a,b){return a + b;});
+  var result = currentCount.interpose('+').reduce(function(a,b){return a + b;}).toString();
+
+  //remove the leading +
+  return result.substr(1);
 };
 
 History.prototype.getHistorySum = function(){
   var currentData = this.getData();
-  var currentSum = currentData.map(function(x){return x.get('count');}).reduce(function(a,b){return a + b;});
+  var currentSum =
+    currentData.map(function(x){return x.get('count');})
+      .filter(function(value){return value !== '';})
+      .reduce(function(a,b){return a + b;});
   return currentSum;
 };
 

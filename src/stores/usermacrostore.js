@@ -27,9 +27,9 @@ var _userMacros = {
       currentFat : 0,
       currentCarb : 0,
       //todays history is created on the fly
-      todaysProtein : null,
-      todaysFat : null,
-      todaysCarb : null
+      todaysProtein : new History(initialProtein),
+      todaysFat : new History(initialFat),
+      todaysCarb : new History(initialCarb)
 
     }
 
@@ -95,38 +95,17 @@ function incrementMacro(macro,currentSum){
   var todaysMacros = user[currentDay];
 
   if(macro==='protein'){
-    //if history exists, add to it
-    if(todaysMacros.todaysProtein){
-      todaysMacros.todaysProtein.addMacro(currentSum);
-    } else {
-      //if no history exists, create one
-      var initialProtein = Immutable.fromJS([{macro: 'protein', count: todaysMacros.currentProtein, timestamp: Date.now()}]);
-      todaysMacros.todaysProtein = new History(initialProtein);
-    }
+    todaysMacros.todaysProtein.addMacro(currentSum);
     //reset current
     todaysMacros.currentProtein = 0;
 
   }else if(macro==='fat'){
-    //if history exists, add to it
-    if(todaysMacros.todaysFat){
-      todaysMacros.todaysFat.addMacro(currentSum);
-    } else {
-      //if no history exists, create one
-      var initialFat = Immutable.fromJS([{macro: 'fat', count: todaysMacros.currentFat, timestamp: Date.now()}]);
-      todaysMacros.todaysFat = new History(initialFat);
-    }
+    todaysMacros.todaysFat.addMacro(currentSum);
     //reset current
     todaysMacros.currentFat = 0;
 
   }else if(macro==='carbs'){
-    //if history exists, add to it
-    if(todaysMacros.todaysCarb){
-      todaysMacros.todaysCarb.addMacro(currentSum);
-    } else {
-      //if no history exists, create one
-      var initialCarb = Immutable.fromJS([{macro: 'carb', count: todaysMacros.currentCarb, timestamp: Date.now()}]);
-      todaysMacros.todaysCarb = new History(initialCarb);
-    }
+    todaysMacros.todaysCarb.addMacro(currentSum);
     //reset current carb
     todaysMacros.currentCarb = 0;
 
