@@ -47,7 +47,7 @@ var MacroIdentifier = React.createClass({
 
   render: function(){
     return(
-      <button className={"btn btn-success col-xs-3"} data-test={this.props.text + '-count'} onClick={this._onIncrementClick}>
+      <button className={"btn btn-success col-xs-3"} data-test={this.props.text + '-count'} onTouchEnd={this._onIncrementClick}>
         {this.props.text}
       </button>
     );
@@ -70,7 +70,7 @@ var MacroButton = React.createClass({
 
   render: function(){
     return(
-      <button className={"btn btn-primary col-xs-3"} onClick={this._onUpdateClick} data-test={this.props.category + '-' + this.props.value}>
+      <button className={"btn btn-primary col-xs-3"} onTouchEnd={this._onUpdateClick} data-test={this.props.category + '-' + this.props.value}>
         {'+' + this.props.value}
       </button>
     );
